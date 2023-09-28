@@ -22,12 +22,17 @@ var ball = {
 }
 
 function setup(){
-  var canvas =  createCanvas(700,600);
+  var canvas =  createCanvas(700,1000);
+ 
   canvas.center();
+canvas.parent('canvasdiv');
+  video = createCapture(VIDEO);
+video.hide();
 }
 
 
 function draw(){
+ 
 
  background(0); 
 
@@ -66,6 +71,9 @@ function draw(){
    
    //function move call which in very important
     move();
+    image(video, 0, 500, 600, 800);
+  poseNet = ml5.poseNet(video, modelLoaded)
+poseNet.on('pose', gotPoses)
 }
 
 
@@ -163,4 +171,5 @@ function paddleInCanvas(){
   if(mouseY < 0){
     mouseY =0;
   }  
+  
 }
